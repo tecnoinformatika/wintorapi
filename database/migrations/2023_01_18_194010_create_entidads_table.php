@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->string('descripcion')->nullable();
-            $table->string('telefono')->nullable();
+            $table->integer('tipoentidad')->nullable();
+            $table->string('linkpagina')->nullable();
+            $table->string('linkpqrsd')->nullable();
             $table->timestamps();
         });
     }

@@ -19,6 +19,14 @@ class EntidadController extends Controller
         return $entidades;
     }
 
+    public function list()
+    {
+        $entidades = Entidad::all();
+
+       
+        $pageConfigs = ['pageHeader' => false];
+        return view('/content/entidades/list', ['pageConfigs' => $pageConfigs]);
+    }
     /**
      * Show the form for creating a new resource.
      *
