@@ -31,8 +31,7 @@ class UserInterfaceController extends Controller
     }
 
     public function userDetails(Request $request){
-
-        $user = User::find($request->$id);
+        $user = User::find($id);
 
         return response::json($user);
     }
