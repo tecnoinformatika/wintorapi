@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('banners', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->string('formato');
+            $table->integer('entidad_id')->references('id')->on('entidads');
             $table->timestamps();
         });
     }

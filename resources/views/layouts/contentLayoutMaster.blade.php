@@ -29,7 +29,7 @@ $configData = Helper::applClasses();
 
   {{-- Include core + vendor Styles --}}
   @include('panels/styles')
-
+  <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <!-- END: Head-->
 
