@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
+    
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -45,9 +45,9 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('email','password')))
         {
             return response()->json([
-                'message' => 'Desautorizado'], 401);
+                'message' => 'Unauthorized'], 401);
 
-
+            
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
@@ -67,7 +67,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            'message' => 'has sido correctamente deslogueado'
+            'message' => 'has sido correctamente deslogueado'            
         ]);
     }
 }
