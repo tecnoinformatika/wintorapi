@@ -51,7 +51,7 @@ class AuthController extends Controller
         if (!Auth::attempt($attrs))
         {
             return response()->json([
-                'message' => 'Credenciales inválidas'], 403);
+                'message' => 'Credenciales inválidas'], 401);
 
 
         }
@@ -62,7 +62,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Hola '.$user->name,
-            'accessToken' => $token,
+            'accessTocken' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
         ]);

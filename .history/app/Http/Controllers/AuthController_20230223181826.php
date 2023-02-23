@@ -42,19 +42,10 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-
         $attrs = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
-        ]);
-
-        if (!Auth::attempt($attrs))
-        {
-            return response()->json([
-                'message' => 'Credenciales inválidas'], 403);
-
-
-        }
+        ])
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
@@ -62,7 +53,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Hola '.$user->name,
-            'accessToken' => $token,
+            'accessTocken' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
         ]);

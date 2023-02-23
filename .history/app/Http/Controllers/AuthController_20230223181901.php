@@ -48,10 +48,10 @@ class AuthController extends Controller
             'password' => 'required|min:8'
         ]);
 
-        if (!Auth::attempt($attrs))
+        if (!Auth::attempt($request->only('email','password')))
         {
             return response()->json([
-                'message' => 'Credenciales inválidas'], 403);
+                'message' => 'Desautorizado'], 401);
 
 
         }
@@ -62,7 +62,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Hola '.$user->name,
-            'accessToken' => $token,
+            'accessTocken' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
         ]);
