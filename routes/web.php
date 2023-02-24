@@ -16,7 +16,7 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\EntidadController;
-
+use App\Http\Controllers\VerificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,8 +34,9 @@ Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashb
 
 
 /* Route Dashboards */
-Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify'); // Make sure to keep this as your route name
-
+    Route::get('/email/verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+    Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {
     Route::get('email', [AppsController::class, 'emailApp'])->name('app-email');
