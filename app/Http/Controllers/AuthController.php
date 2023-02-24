@@ -9,6 +9,7 @@ use App\Models\User;
 use \stdClass;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -30,9 +31,9 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => hash::make($request->password),
-            'telefono' => $request->telefono,
-            'aceptaterminos' => $request->aceptaterminos
         ]);
+
+        event(new Registered($user));
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
