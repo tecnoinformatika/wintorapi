@@ -34,6 +34,7 @@ Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashb
 
 
 /* Route Dashboards */
+Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify'); // Make sure to keep this as your route name
 
 /* Route Apps */
 Route::group(['prefix' => 'app'], function () {
