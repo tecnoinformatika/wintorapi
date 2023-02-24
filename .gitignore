@@ -10,6 +10,7 @@
 /public/vendors
 /storage/*.key
 /vendor
+.htaccess
 .env
 .env.backup
 .phpunit.result.cache
@@ -20,3 +21,4 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
+.history/
