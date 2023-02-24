@@ -59,6 +59,11 @@ class AuthController extends Controller
 
         }
 
+        if (Auth::user()->email_verified_at == null){
+            return response()->json([
+                'message' => 'Debes confirmar tu correo electrónico'], 405);
+        }
+
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
