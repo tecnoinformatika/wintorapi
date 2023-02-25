@@ -88,7 +88,7 @@ Route::group(['prefix' => 'publicidad'], function () {
     Route::get('list', [PublicidadController::class, 'list'])->name('publicidad-list');
     Route::get('publicidad/{id}', [PublicidadController::class, 'publicidad'])->name('publicidad-publicidad');
     Route::get('listado', [PublicidadController::class, 'listado'])->name('publicidad-listado');
-    Route::post('crear', [PublicidadController::class, 'crear'])->name('crear');
+    Route::post('crear', [PublicidadController::class, 'crear'])->name('crearpublicidad');
     Route::post('editar', [PublicidadController::class, 'editar'])->name('publicidad-editar');
     Route::post('delete/{id}', [PublicidadController::class, 'delete'])->name('publicidad-delete');
 
