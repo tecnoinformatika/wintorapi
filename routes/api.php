@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntidadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserInterfaceController;
+use App\Http\Controllers\PublicidadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,4 +29,5 @@ Route::get('entidades', [EntidadController::class, 'index']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
     Route::post('userDetails', [UserInterfaceController::class, 'userDetails']);
+    Route::get('publicidades', [PublicidadController::class, 'listadoPubliciadades']);
 });

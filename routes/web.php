@@ -16,6 +16,7 @@ use App\Http\Controllers\MiscellaneousController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\EntidadController;
+use App\Http\Controllers\PublicidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,16 @@ Route::group(['prefix' => 'entidad'], function () {
     Route::post('editarCorreo', [EntidadController::class, 'editarCorreo'])->name('editarCorreor');
     Route::post('eliminarLinea/{id}', [EntidadController::class, 'eliminarLinea'])->name('eliminarLinea');
     Route::post('eliminarCorreo/{id}', [EntidadController::class, 'eliminarCorreo'])->name('eliminarCorreo');
+
+});
+
+Route::group(['prefix' => 'publicidad'], function () {
+    Route::get('list', [PublicidadController::class, 'list'])->name('publicidad-list');
+    Route::get('publicidad/{id}', [PublicidadController::class, 'publicidad'])->name('publicidad-publicidad');
+    Route::get('listado', [PublicidadController::class, 'listado'])->name('publicidad-listado');
+    Route::post('crear', [PublicidadController::class, 'crear'])->name('crear');
+    Route::post('editar', [PublicidadController::class, 'editar'])->name('publicidad-editar');
+    Route::post('delete/{id}', [PublicidadController::class, 'delete'])->name('publicidad-delete');
 
 });
 /* Route UI */

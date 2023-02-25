@@ -15,11 +15,11 @@ class Entidad extends Model
 
     public function logo()
     {
-        return $this->hasOne(Logos::class);
+        return $this->hasOne(Logo::class);
     }
     public function banner()
     {
-        return $this->hasOne(Banners::class);
+        return $this->hasOne(Banner::class);
     }
 
 

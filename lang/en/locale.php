@@ -1,6 +1,8 @@
 <?php
 
 return [
+    "General" => "General",
+    "Publicidad" => "Publicidad",
     "Entidades" => "Entidades",
     "Listado" => "Listado",
     "Apps & Pages" => "Apps & Pages",

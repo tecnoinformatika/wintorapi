@@ -22,47 +22,22 @@
       ]
     },
     {
-      "name": "Entidades",
+      "name": "General",
       "icon": "build",
       "slug": "",
       "submenu": [
         {
           "url": "entidad/list",
-          "name": "Listado",
+          "name": "Entidades",
           "icon": "circle",
           "slug": "entidad-list"
         },
         {
-          "name": "View",
+          "url": "publicidad/list",
+          "name": "Publicidad",
           "icon": "circle",
-          "slug": "",
-          "submenu": [
-            {
-              "url": "app/user/view/account",
-              "name": "Account",
-              "slug": "app-user-view-account"
-            },
-            {
-              "url": "app/user/view/security",
-              "name": "Security",
-              "slug": "app-user-view-security"
-            },
-            {
-              "url": "app/user/view/billing",
-              "name": "Billings & Plans",
-              "slug": "app-user-view-billing"
-            },
-            {
-              "url": "app/user/view/notifications",
-              "name": "Notifications",
-              "slug": "app-user-view-notifications"
-            },
-            {
-              "url": "app/user/view/connections",
-              "name": "Connections",
-              "slug": "app-user-view-connections"
-            }
-          ]
+          "slug": "publicidad-list"
+
         }
       ]
     },
