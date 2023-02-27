@@ -28,6 +28,7 @@ Route::get('entidades', [EntidadController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
-    Route::post('userDetails', [UserInterfaceController::class, 'userDetails']);
+    Route::post('userDetails', [AuthController::class, 'userDetails']);
     Route::get('publicidades', [PublicidadController::class, 'listadoPubliciadades']);
+    Route::get('publicidadapi/{id}', [PublicidadController::class, 'publicidadapi']);
 });

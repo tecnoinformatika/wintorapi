@@ -15,7 +15,7 @@ class publicidad extends Model
         'propietario'
     ];
 
-    public function ImagenPublicitaria()
+    public function imagenpublicitaria()
     {
         return $this->hasOne(ImagenPublicitaria::class);
     }

@@ -33,6 +33,13 @@ class PublicidadController extends Controller
 
         return response::json($entidad);
     }
+    public function publicidadapi($id)
+    {
+
+        return response([
+            'publicidad' => publicidad::where('id', $id)->with('imagenpublicitaria')->get()
+        ], 200);
+    }
     public function listadoPubliciadades(){
         $publicidad = publicidad::join('imagen_publicitarias','publicidads.id','=','imagen_publicitarias.publicidad_id')
         ->select('publicidads.*', 'imagen_publicitarias.nombre as imagen' )

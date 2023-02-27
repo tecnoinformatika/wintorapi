@@ -12,7 +12,7 @@ class ImagenPublicitaria extends Model
     protected $fillable = ['nombre', 'formato', 'publicidad_id'];
 
     // Relación Inversa (Opcional)
-    public function ImagenPublicitaria()
+    public function publicidad()
     {
     	return $this->belongsTo(publicidad::class);
     }

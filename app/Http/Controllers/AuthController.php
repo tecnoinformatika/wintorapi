@@ -46,36 +46,51 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
+        //validate fields
         $attrs = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:8'
+            'password' => 'required|min:6'
         ]);
 
-        if (!Auth::attempt($attrs))
+        // attempt login
+        if(!Auth::attempt($attrs))
         {
-            return response()->json([
-                'message' => 'Credenciales inválidas'], 403);
-
-
+            return response([
+                'message' => 'Datos de acceso incorrectos.'
+            ], 403);
         }
 
+        //return user & token in response
+        return response([
+            'user' => auth()->user(),
+            'token' => auth()->user()->createToken('secret')->plainTextToken
+        ], 200);
+    }
+    public function userDetails(Request $request){
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        return response([
+            'user' => auth()->user()
+        ], 200);
+    }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-
-        if ($user->email_verified_at == null){
-            return response()->json([
-                'message' => 'Debes confirmar tu correo electrónico'], 405);
-        }
-
-        return response()->json([
-            'message' => 'Hola '.$user->name,
-            'accessToken' => $token,
-            'token_type' => 'Bearer',
-            'user' => $user,
+    // update user
+    public function update(Request $request)
+    {
+        $attrs = $request->validate([
+            'name' => 'required|string'
         ]);
+
+        $image = $this->saveImage($request->image, 'profiles');
+
+        auth()->user()->update([
+            'name' => $attrs['name'],
+            'image' => $image
+        ]);
+
+        return response([
+            'message' => 'User updated.',
+            'user' => auth()->user()
+        ], 200);
     }
 
     public function logout(Request $request)
