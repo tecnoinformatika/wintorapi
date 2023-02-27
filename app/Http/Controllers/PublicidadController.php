@@ -40,14 +40,14 @@ class PublicidadController extends Controller
             'publicidad' => publicidad::where('id', $id)->with('imagenpublicitaria')->get()
         ], 200);
     }
-    public function listadoPubliciadades(){
-        $publicidad = publicidad::join('imagen_publicitarias','publicidads.id','=','imagen_publicitarias.publicidad_id')
-        ->select('publicidads.*', 'imagen_publicitarias.nombre as imagen' )
-        ->get();
 
-        return response()->json([
-            'publicidad' => $publicidad
-        ]);
+    public function listadoPubliciadades()
+    {
+        return response([
+            'publicidad' => publicidad::join('imagen_publicitarias','publicidads.id','=','imagen_publicitarias.publicidad_id')
+            ->select('publicidads.*', 'imagen_publicitarias.nombre as imagen' )
+            ->get()
+        ], 200);
     }
     public function listado()
     {
