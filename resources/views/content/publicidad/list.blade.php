@@ -53,6 +53,8 @@
                                 <th>Nombre</th>
                                 <th>Duración</th>
                                 <th>Propietario</th>
+                                <th>Url</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -102,6 +104,23 @@
                 placeholder="Propietario de la publicidad"
                 name="propietario"
               />
+            </div>
+            <div class="mb-1">
+                <label class="form-label" for="propietario">Url</label>
+                <input
+                  type="text"
+                  id="url"
+                  class="form-control dt-contact"
+                  placeholder="Url"
+                  name="url"
+                />
+              </div>
+              <div class="mb-1">
+                <label class="form-label" for="propietario">Estado</label>
+                <select name="activo" id="activo" class="select2 form-select">>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
             </div>
             <div class="mb-1">
               <label for="customFile1" class="form-label">logo de la entidad</label>
@@ -155,6 +174,24 @@
                 placeholder="Propietario de la publicidad"
                 name="propietario"
               />
+            </div>
+            <div class="mb-1">
+                <label class="form-label" for="propietario">Url</label>
+                <input
+                  type="text"
+                  id="url1"
+                  class="form-control dt-contact"
+                  placeholder="Url"
+                  name="url"
+                />
+              </div>
+              <div class="mb-1">
+
+                <label class="form-label" for="propietario">Estado</label>
+                <select name="activo" id="activo1" class="select2 form-select">>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
             </div>
             <img  id="imagen_publicitaria2" width="150px" style="background-color: #fff" alt="">
             <div class="mb-1">
@@ -215,6 +252,8 @@
       $('#nombre1').val(data.nombre);
       $('#duracion1').val(data.duracion);
       $('#propietario1').val(data.propietario);
+      $('#url1').val(data.url);
+      $('#activo1').val(data.activo);
       $('#imagen_publicitaria2').attr("src","/storage/"+ data.imagen);
       });
 
@@ -283,6 +322,8 @@
             { data: 'nombre' },
             { data: 'duracion' },
             { data: 'propietario' },
+            { data: 'url' },
+            { data: 'activo' },
             { data: '' }
           ],
 
@@ -346,8 +387,29 @@
                 }
             },
             {
-              // Actions
+              responsivePriority: 5,
               targets: 5,
+              render: function (data, type, full, meta) {
+
+                return full['url'];
+              }
+            },
+            {
+              responsivePriority: 6,
+              targets: 6,
+              render: function (data, type, full, meta) {
+                var estado = '';
+                if(full['activo'] == 1){
+                    estado = 'Activo';
+                }else{
+                    estado = 'Inactivo';
+                };
+                return estado;
+              }
+            },
+            {
+              // Actions
+              targets: 7,
               orderable: false,
               render: function (data, type, full, meta) {
                 return (

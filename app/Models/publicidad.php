@@ -12,7 +12,9 @@ class publicidad extends Model
     protected $fillable = [
         'nombre',
         'duracion',
-        'propietario'
+        'propietario',
+        'url',
+        'activo'
     ];
 
     public function imagenpublicitaria()

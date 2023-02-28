@@ -72,6 +72,8 @@ class PublicidadController extends Controller
         $publicidad->nombre = $request->nombre;
         $publicidad->duracion = $request->duracion;
         $publicidad->propietario = $request->propietario;
+        $publicidad->url = $request->url;
+        $publicidad->activo = $request->activo;
         $publicidad->save();
 
             $this->validate($request, [
@@ -106,6 +108,8 @@ class PublicidadController extends Controller
         $publicidad->nombre = $request->nombre;
         $publicidad->duracion = $request->duracion;
         $publicidad->propietario = $request->propietario;
+        $publicidad->url = $request->url;
+        $publicidad->activo = $request->activo;
         $publicidad->save();
 
             $this->validate($request, [
