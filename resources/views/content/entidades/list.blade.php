@@ -105,8 +105,8 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="table-responsive">
-            <table id="emtidades" class="datatables-basic table table-responsive table-striped">
+            <div class="card-datatable">
+                <table id="emtidades" class="datatables-ajax table table-responsive datatables-basic">
               <thead>
                 <tr>
                   <th>id</th>

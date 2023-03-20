@@ -67,6 +67,10 @@ mix
   .js('resources/js/core/app-menu.js', 'public/js/core')
   .js('resources/js/core/app.js', 'public/js/core')
   .js('resources/assets/js/scripts.js', 'public/js/core')
+  .js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+    ])
   .sass('resources/scss/base/themes/dark-layout.scss', 'public/css/base/themes', { sassOptions })
   .sass('resources/scss/base/themes/bordered-layout.scss', 'public/css/base/themes', { sassOptions })
   .sass('resources/scss/base/themes/semi-dark-layout.scss', 'public/css/base/themes', { sassOptions })
@@ -109,3 +113,4 @@ mix.then(() => {
  */
 
 mix.browserSync('http://127.0.0.1:8000/')
+

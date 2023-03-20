@@ -42,10 +42,9 @@ class EntidadController extends Controller
     {
 
         $entidad = Entidad::where('entidads.id',$id)->join('logos','entidads.id','=','logos.entidad_id')
-        ->join('banners','entidads.id','=','banners.entidad_id')
+        ->leftjoin('banners','entidads.id','=','banners.entidad_id')
         ->select('entidads.*', 'logos.nombre as logo','banners.nombre as banner')
         ->first();
-
         $lineasAtencion = lineasAtencion::where('entidad_id', $entidad->id)->get();
         $correosAtencion = CorreosAtencion::where('entidad_id', $entidad->id)->get();
 
@@ -78,6 +77,8 @@ class EntidadController extends Controller
     }
     public function crear(Request $request)
     {
+
+
         $entidad = new Entidad();
 
         $entidad->nombre = $request->nombre;
@@ -86,6 +87,9 @@ class EntidadController extends Controller
         $entidad->linkpagina = $request->linkpagina;
         $entidad->linkpqrsd = $request->linkpqrsd;
         $entidad->save();
+
+        if ($request->file('logo')){
+
 
             $this->validate($request, [
                 'logo' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
@@ -103,24 +107,26 @@ class EntidadController extends Controller
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s"),
             ]);
+        }
 
-
+        if ($request->file('banner')){
             $this->validate($request, [
                 'banner' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             ]);
 
 
-            $image_path = $request->file('banner')->store('banner', 'public');
+            $image_path1 = $request->file('banner')->store('banner', 'public');
 
-            $formato = request()->file('banner')->getClientOriginalExtension();
+            $formato1 = request()->file('banner')->getClientOriginalExtension();
 
             $data = Banner::create([
-                'nombre' => $image_path,
-				'formato' => $formato,
+                'nombre' => $image_path1,
+				'formato' => $formato1,
 				'entidad_id' => $entidad->id,
 				'created_at' => date("Y-m-d H:i:s"),
 				'updated_at' => date("Y-m-d H:i:s"),
             ]);
+        }
         return back();
     }
     public function editar(Request $request)
@@ -136,39 +142,41 @@ class EntidadController extends Controller
         $entidad->save();
 
 
-            $this->validate($request, [
-                'logo1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            ]);
+            if ($request->file('logo1')){
+                $this->validate($request, [
+                    'logo1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                ]);
+                $image_path = $request->file('logo1')->store('logo', 'public');
 
-            $image_path = $request->file('logo1')->store('logo', 'public');
+                $formato = request()->file('logo1')->getClientOriginalExtension();
 
-            $formato = request()->file('logo1')->getClientOriginalExtension();
-
-            $data = Logo::where('entidad_id',$entidad->id)->update([
-                'nombre' => $image_path,
-				'formato' => $formato,
-				'entidad_id' => $entidad->id,
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s"),
-            ]);
-
-
-            $this->validate($request, [
-                'banner1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            ]);
+                $data = Logo::where('entidad_id',$entidad->id)->update([
+                    'nombre' => $image_path,
+                    'formato' => $formato,
+                    'entidad_id' => $entidad->id,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ]);
+            }
 
 
-            $image_path1 = $request->file('banner1')->store('banner', 'public');
 
-            $formato = request()->file('banner1')->getClientOriginalExtension();
+            if ($request->file('banner1')){
+                $this->validate($request, [
+                    'banner1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                ]);
+                $image_path2 = $request->file('banner1')->store('banner', 'public');
 
-            $data = Banner::where('entidad_id',$entidad->id)->update([
-                'nombre' => $image_path,
-				'formato' => $formato,
-				'entidad_id' => $entidad->id,
-				'created_at' => date("Y-m-d H:i:s"),
-				'updated_at' => date("Y-m-d H:i:s"),
-            ]);
+                $formato2 = request()->file('banner1')->getClientOriginalExtension();
+
+                $data = Banner::where('entidad_id',$entidad->id)->update([
+                    'nombre' => $image_path2,
+                    'formato' => $formato2,
+                    'entidad_id' => $entidad->id,
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'updated_at' => date("Y-m-d H:i:s"),
+                ]);
+        }
         return back();
     }
     /**

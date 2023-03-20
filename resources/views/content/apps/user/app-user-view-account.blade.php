@@ -31,14 +31,14 @@
             <div class="d-flex align-items-center flex-column">
               <img
                 class="img-fluid rounded mt-3 mb-2"
-                src="{{asset('images/portrait/small/avatar-s-2.jpg')}}"
+                id="avatar"
                 height="110"
                 width="110"
                 alt="User avatar"
               />
               <div class="user-info text-center">
-                <h4>Gertrude Barton</h4>
-                <span class="badge bg-light-secondary">Author</span>
+                <h4 id="nombre"></h4>
+                <span class="badge bg-light-secondary" id="tipo"></span>
               </div>
             </div>
           </div>
@@ -62,47 +62,31 @@
               </div>
             </div>
           </div>
-          <h4 class="fw-bolder border-bottom pb-50 mb-1">Details</h4>
+          <h4 class="fw-bolder border-bottom pb-50 mb-1">Detalles</h4>
           <div class="info-container">
             <ul class="list-unstyled">
               <li class="mb-75">
-                <span class="fw-bolder me-25">Username:</span>
-                <span>violet.dev</span>
+                <span class="fw-bolder me-25">Nombre:</span>
+                <span id="nombre2"></span>
               </li>
               <li class="mb-75">
-                <span class="fw-bolder me-25">Billing Email:</span>
-                <span>vafgot@vultukir.org</span>
+                <span class="fw-bolder me-25">Email:</span>
+                <span id="email"></span>
               </li>
               <li class="mb-75">
-                <span class="fw-bolder me-25">Status:</span>
-                <span class="badge bg-light-success">Active</span>
+                <span class="fw-bolder me-25">Estado:</span>
+                <span class="badge bg-light-success" id="estado"></span>
               </li>
               <li class="mb-75">
-                <span class="fw-bolder me-25">Role:</span>
+                <span class="fw-bolder me-25" id="rol">Rol:</span>
                 <span>Author</span>
-              </li>
-              <li class="mb-75">
-                <span class="fw-bolder me-25">Tax ID:</span>
-                <span>Tax-8965</span>
-              </li>
-              <li class="mb-75">
-                <span class="fw-bolder me-25">Contact:</span>
-                <span>+1 (609) 933-44-22</span>
-              </li>
-              <li class="mb-75">
-                <span class="fw-bolder me-25">Language:</span>
-                <span>English</span>
-              </li>
-              <li class="mb-75">
-                <span class="fw-bolder me-25">Country:</span>
-                <span>Wake Island</span>
               </li>
             </ul>
             <div class="d-flex justify-content-center pt-2">
               <a href="javascript:;" class="btn btn-primary me-1" data-bs-target="#editUser" data-bs-toggle="modal">
-                Edit
+                Editar
               </a>
-              <a href="javascript:;" class="btn btn-outline-danger suspend-user">Suspended</a>
+              <a href="javascript:;" class="btn btn-outline-danger suspend-user">Suspender</a>
             </div>
           </div>
         </div>
@@ -293,7 +277,7 @@
   </div>
 </section>
 
-@include('content/_partials/_modals/modal-edit-user')
+@include('content/_partials/_modals/modal-edit-usuario')
 @include('content/_partials/_modals/modal-upgrade-plan')
 @endsection
 
@@ -325,4 +309,30 @@
   <script src="{{ asset(mix('js/scripts/pages/modal-edit-user.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/pages/app-user-view-account.js')) }}"></script>
   <script src="{{ asset(mix('js/scripts/pages/app-user-view.js')) }}"></script>
+
+  <script>
+    var url = window.location;
+    var nurl = url.toString()
+    const arr = nurl.split('/')
+    var id = arr[arr.length-1];
+    $( document ).ready(function() {
+
+        $.get("/usuarios/usuario/"+id , function(data, status){
+
+            var estado = data.estado;
+            var esta = '';
+            if (estado = 1){
+                esta = '<span class="badge bg-light-warning">Pendiente</span>';
+            }else{
+                esta = '<span class="badge bg-light-success">Activo</span>';
+            }
+            $('#avatar').attr("src",data.profile_photo_url);
+            $('#nombre').html(data.name);
+            $('#nombre2').html(data.name);
+            $('#email').html(data.email);
+            $('#estado').html(esta);
+            $('#rol').html(data.tipo);
+        });
+    });
+  </script>
 @endsection

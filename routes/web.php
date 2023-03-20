@@ -17,6 +17,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\EntidadController;
 use App\Http\Controllers\PublicidadController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ Route::group(['prefix' => 'app'], function () {
     Route::get('access-roles', [AppsController::class, 'access_roles'])->name('app-access-roles');
     Route::get('access-permission', [AppsController::class, 'access_permission'])->name('app-access-permission');
     Route::get('user/list', [AppsController::class, 'user_list'])->name('app-user-list');
-    Route::get('user/view/account', [AppsController::class, 'user_view_account'])->name('app-user-view-account');
+    Route::get('user/view/account/{id}', [AppsController::class, 'user_view_account'])->name('app-user-view-account');
     Route::get('user/view/security', [AppsController::class, 'user_view_security'])->name('app-user-view-security');
     Route::get('user/view/billing', [AppsController::class, 'user_view_billing'])->name('app-user-view-billing');
     Route::get('user/view/notifications', [AppsController::class, 'user_view_notifications'])->name('app-user-view-notifications');
@@ -91,6 +92,12 @@ Route::group(['prefix' => 'publicidad'], function () {
     Route::post('crear', [PublicidadController::class, 'crear'])->name('crearpublicidad');
     Route::post('editar', [PublicidadController::class, 'editar'])->name('publicidad-editar');
     Route::post('delete/{id}', [PublicidadController::class, 'delete'])->name('publicidad-delete');
+
+});
+Route::group(['prefix' => 'usuarios'], function () {
+    Route::get('list', [UserController::class, 'listado'])->name('usuarios-list');
+    Route::get('count', [UserController::class, 'total'])->name('usuarios-total');
+    Route::get('usuario/{id}',[UserController::class, 'usuario'])->name('usuario');
 
 });
 /* Route UI */

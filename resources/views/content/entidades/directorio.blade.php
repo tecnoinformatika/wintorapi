@@ -63,7 +63,8 @@
               </div>
             </div>
           </div> --}}
-          <h4 class="fw-bolder border-bottom pb-50 mb-1">Detalles</h4>
+          <h4  class="fw-bolder border-bottom pb-50 mb-1">Detalles</h4>
+          <img src="/storage/{{ $entidad->banner }}" alt="" width="100%">
           <div class="info-container">
             <ul class="list-unstyled">
               <li class="mb-75">
@@ -208,7 +209,7 @@
               type="text"
               class="form-control dt-full-name"
               id="nombre"
-              placeholder="Nombre de la entidad"
+              placeholder="Como quiere llamar la línea?"
               name="nombre"
             />
           </div>
