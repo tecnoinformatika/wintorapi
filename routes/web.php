@@ -32,8 +32,9 @@ use App\Http\Controllers\RoleController;
 */
 
 // Main Page Route
-Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
-
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
+});
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
