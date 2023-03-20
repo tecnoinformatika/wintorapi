@@ -1,7 +1,11 @@
 @extends('layouts/contentLayoutMaster')
 
 @section('title', 'Roles')
+@php
 
+    $permission = DB::table('permissions')->get();
+
+@endphp
 @section('vendor-style')
   <!-- Vendor css files -->
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
@@ -393,7 +397,8 @@
 </div>
 <!-- table -->
 
-@include('content/_partials/_modals/modal-add-role')
+
+
 @endsection
 
 @section('vendor-script')

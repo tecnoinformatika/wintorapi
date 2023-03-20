@@ -332,6 +332,7 @@
             $('#email').html(data.email);
             $('#estado').html(esta);
             $('#rol').html(data.tipo);
+            $('#id1').val(data.id);
         });
     });
   </script>

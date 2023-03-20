@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Response;
 
 class EntidadController extends Controller
 {
+
+    function __construct()
+    {
+         $this->middleware('permission:entidad-list|entidad-create|entidad-edit|entidad-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:entidad-create', ['only' => ['create','store']]);
+         $this->middleware('permission:entidad-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:entidad-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

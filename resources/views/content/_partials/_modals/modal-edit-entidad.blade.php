@@ -12,7 +12,7 @@
         <form class="add-new-user modal-content pt-0" id="data1" action="/entidad/editar" method="POST" enctype="multipart/form-data">
           {{ method_field('POST') }}
           @csrf
-          <input type="hidden" id="id1" name="id1" value="">
+          <input type="hidden" id="id1" name="id1" value="{{$entidad->id}}">
           <div class="col-12 col-md-12">
             <label class="form-label" for="modalEditUserFirstName">Nombre</label>
             <input
@@ -27,11 +27,11 @@
           <div class="col-12 col-md-12">
             <label class="form-label" for="modalEditUserLastName">Introducción</label>
             <textarea
-              id="email1"
-              name="email1"
+              id="descripcion1"
+              name="descripcion1"
               class="form-control"
               row="3"
-              data-msg="Ingresa el email"
+              data-msg="Please enter your last name"
             >{{$entidad->descripcion}}</textarea>
           </div>
           <div class="col-12">

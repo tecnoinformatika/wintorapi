@@ -153,14 +153,12 @@ $(function () {
               feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               '</a>' +
               '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="' +
-              userView +
-              '" class="dropdown-item">' +
+              '<a href="/app/user/view/account/' + full['id'] +'" class="dropdown-item">' +
               feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) +
-              'Details</a>' +
+              'Detalles</a>' +
               '<a href="javascript:;" class="dropdown-item delete-record">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
-              'Delete</a></div>' +
+              'Eliminar</a></div>' +
               '</div>' +
               '</div>'
             );
@@ -179,8 +177,8 @@ $(function () {
         '>',
       language: {
         sLengthMenu: 'Show _MENU_',
-        search: 'Search',
-        searchPlaceholder: 'Search..'
+        search: 'Buscar',
+        searchPlaceholder: 'Buscar..'
       },
       // Buttons with Dropdown
       buttons: [

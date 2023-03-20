@@ -18,6 +18,7 @@ use App\Http\Controllers\ChartsController;
 use App\Http\Controllers\EntidadController;
 use App\Http\Controllers\PublicidadController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,12 @@ use App\Http\Controllers\UserController;
 Route::get('/', [DashboardController::class, 'dashboardEcommerce'])->name('dashboard-ecommerce');
 
 
-
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
+    Route::get('editroles/{id}', [RoleController::class, 'edit'])->name('editroles');
+});
 /* Route Dashboards */
 
 /* Route Apps */

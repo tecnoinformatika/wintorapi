@@ -1,5 +1,5 @@
 <!-- Add Role Modal -->
-<div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="editRoleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-add-new-role">
       <div class="modal-content">
         <div class="modal-header bg-transparent">
@@ -7,11 +7,11 @@
         </div>
         <div class="modal-body px-5 pb-5">
           <div class="text-center mb-4">
-            <h1 class="role-title">Agregar un nuevo ROL</h1>
+            <h1 class="role-title">Editar</h1>
             <p>Seleccionar permisos del ROL</p>
           </div>
           <!-- Add role form -->
-          {!! Form::open(array('route' => 'roles.store','method'=>'POST', 'class' => 'row')) !!}
+          {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
             @csrf
             <div class="col-12">
               <label class="form-label" for="modalRoleName">Nombre del ROL</label>
@@ -64,6 +64,7 @@
                           {{ $value->name }}</label></div>
                       <br/>
                       @endforeach
+
                     </div>
                     </tr>
                   </tbody>
