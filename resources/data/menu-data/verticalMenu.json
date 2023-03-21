@@ -35,7 +35,7 @@
       "slug": "",
       "submenu": [
         {
-          "url": "app/access-roles",
+          "url": "roles",
           "name": "Roles",
           "icon": "circle",
           "slug": "app-access-roles"

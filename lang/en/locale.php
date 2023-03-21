@@ -193,7 +193,7 @@ return [
     "Billings & Plans" => "Billings & Plans",
     "Notifications" => "Notifications",
     "Connections" => "Connections",
-    "Roles & Permission" => "Roles & Permission",
+    "Roles & Permission" => "Roles y permisos",
     "Roles" => "Roles",
     "Permission" => "Permission",
     "Cover" => "Cover",

@@ -1,3 +1,5 @@
+.htaccess
+.env
 /node_modules
 /public/hot
 /public/data
@@ -10,8 +12,6 @@
 /public/vendors
 /storage/*.key
 /vendor
-.htaccess
-.env
 .env.backup
 .phpunit.result.cache
 Homestead.json
