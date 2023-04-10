@@ -45,6 +45,12 @@
           "name": "Permission",
           "icon": "circle",
           "slug": "app-access-permission"
+        },
+        {
+          "url": "personal/staff",
+          "name": "Colaboradores",
+          "icon": "circle",
+          "slug": "personal"
         }
       ]
     },

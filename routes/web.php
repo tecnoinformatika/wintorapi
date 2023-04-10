@@ -39,8 +39,15 @@ Route::group(['middleware' => ['auth']], function() {
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
     Route::get('editroles/{id}', [RoleController::class, 'edit'])->name('editroles');
+    Route::group(['prefix' => 'personal'], function () {
+        Route::get('staff', [UserController::class, 'index'])->name('staff');
+        Route::PATCH('update/{id}', [UserController::class, 'staff_update'])->name('staff_update');
+        Route::get('editar/{id}', [UserController::class, 'editar_staff'])->name('editar_staff');
+        Route::get('count', [UserController::class, 'totalstaff'])->name('totalstaff');
+        Route::get('staff/{id}',[UserController::class, 'staffdetalle'])->name('staffdetalle');
+
+    });
 });
 /* Route Dashboards */
 
@@ -107,6 +114,7 @@ Route::group(['prefix' => 'usuarios'], function () {
     Route::get('usuario/{id}',[UserController::class, 'usuario'])->name('usuario');
 
 });
+
 /* Route UI */
 Route::group(['prefix' => 'ui'], function () {
     Route::get('typography', [UserInterfaceController::class, 'typography'])->name('ui-typography');

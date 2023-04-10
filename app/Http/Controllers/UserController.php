@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
@@ -20,6 +21,8 @@ class UserController extends Controller
         $data['data'] = $users;
         return response::json($data);
     }
+
+
     public function total(){
         $users = User::where('tipo','!=','administrador' )->count();
         return response::json($users);
@@ -29,6 +32,18 @@ class UserController extends Controller
         $usuario = User::find($id);
 
         return response::json($usuario);
+    }
+    public function index(){
+        $data = User::select('users.id as id','users.name as full_name', 'users.tipo as role', 'users.name as username','users.email as email','users.profile_photo_path as avatar','users.estado as status' )
+        ->get();
+        $users = User::count();
+        return view('content.apps.user.staff-user-list',compact('data','users'));
+    }
+    public function create()
+    {
+        $permission = Permission::get();
+        $roles = Role::pluck('name','name')->all();
+        return view('content.apps.user.staff-crear',compact('permission','roles'));
     }
     public function store(Request $request)
     {
@@ -66,13 +81,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar_staff($id)
     {
         $user = User::find($id);
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
+        return view('content.apps.user.staff-edit',compact('user','roles','userRole'));
     }
 
     /**
@@ -84,6 +99,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
