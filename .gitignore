@@ -1,16 +1,5 @@
 .htaccess
 .env
-/node_modules
-/public/hot
-/public/data
-/public/fonts
-/public/images
-/public/.storage
-/public/js
-/public/css
-/public/css-rtl
-/public/vendors
-/storage/*.key
 /vendor
 .env.backup
 .phpunit.result.cache
@@ -21,4 +10,4 @@ yarn-error.log
 /vuexy-shell-scripts
 supervisord.log
 supervisord.pid
-.history/
+/.history
